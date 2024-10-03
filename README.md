@@ -53,6 +53,7 @@ unescaped ::= %x20-21 | %x23-5B | %x5D-10FFFF
 note: symbol * indicates 0 or more instances while symbol + indicates 1 or more instances
 ```
 #Classes
+```
 JSONValue
 JSONObject extends JSONValue
 JSONArray extends JSONValue
@@ -62,9 +63,10 @@ JSONBoolean extends JSONValue
 JSONException extends Exception
 Scanner
 TestSuite
-
+```
 Useful public methods in JSONValue and related classes:
-
+```
 Object toJava();//return Java value
 String toString();//return JSON value
 boolean equals(Object o)//check equality
+```
