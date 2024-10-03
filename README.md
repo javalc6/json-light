@@ -33,7 +33,7 @@ run: java json.TestSuite [json file]
 - if no optional argument is provided, it performs built in automatic tests of json parser.
 ```
 
-#JSON Syntax
+# JSON Syntax
 JSON syntax is based on RFC4627
 ```
 JSON-text ::= object | array
@@ -52,7 +52,7 @@ unescaped ::= %x20-21 | %x23-5B | %x5D-10FFFF
 
 note: symbol * indicates 0 or more instances while symbol + indicates 1 or more instances
 ```
-#Classes
+# Classes
 ```
 JSONValue
 JSONObject extends JSONValue
