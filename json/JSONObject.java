@@ -58,7 +58,9 @@ final public class JSONObject extends JSONValue {
 				value.put(key, new JSONArray((ArrayList<Object>) element));
 			} else if (element instanceof LinkedHashMap) {
 				value.put(key, new JSONObject((LinkedHashMap<String, Object>) element));
-			}
+			} else if (element instanceof JSONValue) {
+				value.put(key, (JSONValue) element);
+			} else throw new RuntimeException("unexpected element of type " + element.getClass().getName() + " with key " + key);
         });
 	}
 
