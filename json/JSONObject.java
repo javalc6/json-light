@@ -72,7 +72,7 @@ final public class JSONObject extends JSONValue {
 		return value.get(key);
 	}
 
-	public JSONObject(String str) throws JSONException {//constructor parsing a string representing a JSON array
+	public JSONObject(String str) throws JSONException {//constructor parsing a string representing a JSON object
 		Scanner scanner = new Scanner(str);
 		_parse(scanner);
 		if (!scanner.eos()) throw new JSONException("parsing error due to unexpected trailing characters");

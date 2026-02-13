@@ -63,10 +63,9 @@ final public class JSONNumber extends JSONValue {
 		if (ch == '0') {
 			sb.append(ch);
 		} else if (ch > '0' && ch <= '9') {
-			sb.append(ch);
-			while ((ch = scanner.getChar("0123456789", false, false)) != null) {
-				sb.append(ch);
-			}
+            do {
+                sb.append(ch);
+            } while ((ch = scanner.getChar("0123456789", false, false)) != null);
 		}
 
 		ch = scanner.getChar(".eE", false, false);

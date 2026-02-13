@@ -25,6 +25,7 @@ package json;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 /* 
@@ -95,7 +96,7 @@ final public class TestSuite {
 			check_test_toJava(210, tr, "\"abcd efgh\"", "abcd efgh", (s) -> new JSONString(s, true));
 			check_test_toJava(211, tr, "\"abcd\\\"\\\\\\/\\b\\f\\n\\r\\tefgh\"", "abcd\"\\/\b\f\n\r\tefgh", (s) -> new JSONString(s, true));
 			check_test_toJava(212, tr, "\"abcd\\u0040efgh\"", "abcd@efgh", (s) -> new JSONString(s, true));
-			check_test_toJava(213, tr, "abcd\u0040efgh", "abcd@efgh", (s) -> new JSONString(s, false));
+			check_test_toJava(213, tr, "abcd@efgh", "abcd@efgh", (s) -> new JSONString(s, false));
 
 			check_negative_test(250, tr, "\"abcdefgh", "parsing error, expecting \"", (s) -> new JSONString(s, true));
 			check_negative_test(251, tr, "\"abcd\tefgh\"", "parsing error, unexpected control character found", (s) -> new JSONString(s, true));
@@ -122,7 +123,7 @@ final public class TestSuite {
 			check_test(400, tr, "{}", JSONObject::new);
 			check_test(401, tr, "{\"a\":1,\"b\":2.1,\"c\":3e2}", "{\"a\":1,\"b\":2.1,\"c\":3E+2}", JSONObject::new);
 			check_test(402, tr, "    {   \"a\":1   , \"b\": true  , \"c\": null  }    ", "{\"a\":1,\"b\":true,\"c\":null}", JSONObject::new);
-			check_test(403, tr, "{\"a\u0040\":{}}", JSONObject::new);
+			check_test(403, tr, "{\"a@\":{}}", JSONObject::new);
 			check_test(410, tr, "{\"a\":{}}", JSONObject::new);
 			check_test(411, tr, "{\"a\":{},\"aa\":{\"a\":{\"a\":1,\"b\":2,\"c\":3},\"b\":{\"a\":false,\"b\":true},\"c\":{\"a\":null}},\"d\":{\"a\":{}}}", JSONObject::new);
 			check_test(412, tr, "{\"a\":[[],[[1,2,3],[false,true],[null]],[[]]]}", JSONObject::new);
@@ -230,7 +231,7 @@ readfile(): read utf-8 file into string
 	public static String readfile(String filename) throws IOException {
 		if (filename == null)
 			return null;
-		LineNumberReader in = new LineNumberReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
+		LineNumberReader in = new LineNumberReader(new InputStreamReader(new FileInputStream(filename), StandardCharsets.UTF_8));
 		String st;
 		StringBuilder sb = new StringBuilder();
 		while ((st = in.readLine()) != null) {

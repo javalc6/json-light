@@ -41,7 +41,7 @@ final public class JSONArray extends JSONValue {
 	public JSONArray() {
 	}
 
-	public JSONArray(ArrayList<? extends Object> val) {//Java oriented constructor
+	public JSONArray(ArrayList<?> val) {//Java oriented constructor
 		for (Object element: val) {
 			if (element == null)
 				value.add(null);
